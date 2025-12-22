@@ -1,5 +1,6 @@
 import OlvideForm from "@/components/auth/OlvideForm";
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Lukin - Olvidé mi contraseña",
@@ -17,6 +18,15 @@ export default function OlvidePage() {
       </p>
 
       <OlvideForm />
+
+      <nav className="mt-10 flex flex-col space-y-4">
+        <Link className="text-center text-gray-500" href="/auth/login">
+          ¿Ya tienes cuenta? Inicia Sesión
+        </Link>
+        <Link className="text-center text-gray-500" href="/auth/registro">
+          ¿No tienes cuenta? Crea una
+        </Link>
+      </nav>
     </>
   );
 }
