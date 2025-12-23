@@ -1,8 +1,42 @@
 "use client";
 
+import { crearCuenta } from "@/actions/crear-cuenta-action";
+import { useFormState } from "react-dom";
+import MensajeError from "../ui/MensajeError";
+import MensajeExito from "../ui/MensajeExito";
+import { useEffect, useRef } from "react";
+
 export default function RegistroForm() {
+  const ref = useRef<HTMLFormElement>(null);
+  const [state, dispatch] = useFormState(crearCuenta, {
+    errores: [],
+    success: "",
+  });
+
+  useEffect(() => {
+    if (state.success) {
+      ref.current?.reset();
+    }
+  }, [state]);
+
   return (
-    <form className="mt-14 space-y-5" noValidate>
+    <form className="mt-14 space-y-5" noValidate action={dispatch} ref={ref}>
+      {state.errores.map((error) => (
+        <MensajeError key={error}>{error}</MensajeError>
+      ))}
+
+      {state.success && <MensajeExito>{state.success}</MensajeExito>}
+
+      <div className="flex flex-col gap-2">
+        <label className="font-bold text-lg">Nombre</label>
+        <input
+          type="text"
+          placeholder="Tu nombre"
+          className="w-full border border-gray-300 p-3 rounded-lg"
+          name="nombre"
+        />
+      </div>
+
       <div className="flex flex-col gap-2">
         <label className="font-bold text-lg" htmlFor="correo">
           Correo
@@ -13,16 +47,6 @@ export default function RegistroForm() {
           placeholder="Tu correo"
           className="w-full border border-gray-300 p-3 rounded-lg"
           name="correo"
-        />
-      </div>
-
-      <div className="flex flex-col gap-2">
-        <label className="font-bold text-lg">Nombre</label>
-        <input
-          type="text"
-          placeholder="Tu nombre"
-          className="w-full border border-gray-300 p-3 rounded-lg"
-          name="nombre"
         />
       </div>
 
