@@ -24,3 +24,5 @@ export const SuccessSchema = z.string();
 export const ErrorResponseSchema = z.object({
   error: z.string(),
 });
+
+export const TokenSchema = z.string().length(6, "El código no es válido");
