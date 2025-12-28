@@ -2,6 +2,7 @@
 
 import { cookies } from "next/headers";
 import { ErrorResponseSchema, LoginSchema } from "@/src/schemas";
+import { redirect } from "next/navigation";
 
 type ActionStateType = {
   errores: string[];
@@ -52,7 +53,5 @@ export async function autneticar(
     path: "/",
   });
 
-  return {
-    errores: [],
-  };
+  redirect("/admin");
 }

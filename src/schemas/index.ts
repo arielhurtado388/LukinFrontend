@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+// Revisa envios
+
 export const RegistroSchema = z
   .object({
     nombre: z
@@ -19,15 +21,24 @@ export const RegistroSchema = z
     path: ["confirmacion_password"],
   });
 
-export const SuccessSchema = z.string();
-
-export const ErrorResponseSchema = z.object({
-  error: z.string(),
-});
-
 export const TokenSchema = z.string().length(6, "El código no es válido");
 
 export const LoginSchema = z.object({
   correo: z.email("El correo no es válido"),
   password: z.string().min(1, "La contraseña es obligatoria"),
 });
+
+// Revisa respuestas
+export const SuccessSchema = z.string();
+
+export const ErrorResponseSchema = z.object({
+  error: z.string(),
+});
+
+export const UsuarioSchema = z.object({
+  id: z.number(),
+  nombre: z.string(),
+  correo: z.email(),
+});
+
+export type Usuario = z.infer<typeof UsuarioSchema>;
