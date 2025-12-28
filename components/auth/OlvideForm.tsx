@@ -1,8 +1,29 @@
 "use client";
 
+import { olvidePassword } from "@/actions/olvide-action";
+import { useEffect } from "react";
+import { useFormState } from "react-dom";
+import { toast } from "react-toastify";
+
 export default function OlvideForm() {
+  const [state, dispatch] = useFormState(olvidePassword, {
+    errores: [],
+    success: "",
+  });
+
+  useEffect(() => {
+    if (state.errores) {
+      state.errores.forEach((error) => {
+        toast.error(error);
+      });
+    }
+    if (state.success) {
+      toast.success(state.success);
+    }
+  }, [state]);
+
   return (
-    <form className=" mt-14 space-y-5" noValidate>
+    <form className=" mt-14 space-y-5" noValidate action={dispatch}>
       <div className="flex flex-col gap-2 mb-10">
         <label className="font-bold text-lg">Correo</label>
 

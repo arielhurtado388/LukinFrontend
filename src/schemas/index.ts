@@ -28,6 +28,10 @@ export const LoginSchema = z.object({
   password: z.string().min(1, "La contraseña es obligatoria"),
 });
 
+export const ForgotPasswordSchema = z.object({
+  correo: z.email("El correo no es válido"),
+});
+
 // Revisa respuestas
 export const SuccessSchema = z.string();
 
