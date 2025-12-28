@@ -26,3 +26,8 @@ export const ErrorResponseSchema = z.object({
 });
 
 export const TokenSchema = z.string().length(6, "El código no es válido");
+
+export const LoginSchema = z.object({
+  correo: z.email("El correo no es válido"),
+  password: z.string().min(1, "La contraseña es obligatoria"),
+});
