@@ -1,30 +1,35 @@
+import CrearPresupuestoForm from "@/components/presupuestos/CrearPresupuestoForm";
 import { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Lukin - Panel de administración",
-  description: "Lukin - Panel de administración",
+  title: "Lukin - Crear Presupuesto",
+  description: "Lukin - Crear Presupuesto",
 };
 
-export default async function AdminPage() {
+export default function CrearPresupuestoPage() {
   return (
     <>
       <div className="flex flex-col-reverse md:flex-row md:justify-between items-center">
         <div className="w-full md:w-auto">
           <h1 className="font-black text-4xl text-purple-950 my-5">
-            Mis Presupuestos
+            Nuevo Presupuesto
           </h1>
           <p className="text-xl font-bold">
-            Maneja y administra tus {""}
-            <span className="text-amber-500">presupuestos</span>
+            Llena el formulario y crea un nuevo {""}
+            <span className="text-amber-500">presupuesto</span>
           </p>
         </div>
         <Link
-          href={"/admin/presupuestos/nuevo"}
+          href={"/admin"}
           className="bg-amber-500 p-2 rounded-lg text-white font-bold w-full md:w-auto text-center"
         >
-          Crear Presupuesto
+          Volver
         </Link>
+      </div>
+
+      <div className="p-10 mt-10  shadow-lg border ">
+        <CrearPresupuestoForm />
       </div>
     </>
   );

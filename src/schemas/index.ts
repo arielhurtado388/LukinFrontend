@@ -44,6 +44,13 @@ export const ResetPasswordSchema = z
     path: ["confirmacion_password"],
   });
 
+export const DraftPresupuestoSchema = z.object({
+  nombre: z.string().min(1, "El nombre del presupuesto es obligatorio"),
+  cantidad: z.coerce
+    .number("La cantidad no es válida")
+    .min(1, "La cantidad no es válida"),
+});
+
 // Revisa respuestas
 export const SuccessSchema = z.string();
 
