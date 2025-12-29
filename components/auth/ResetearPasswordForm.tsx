@@ -1,6 +1,44 @@
-export default function ResetearPasswordForm() {
+import { resetearPassword } from "@/actions/resetear-password-action";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useFormState } from "react-dom";
+import { toast } from "react-toastify";
+
+type ResetearPasswordFormProps = {
+  token: string;
+};
+
+export default function ResetearPasswordForm({
+  token,
+}: ResetearPasswordFormProps) {
+  const router = useRouter();
+  const resetearPasswordConToken = resetearPassword.bind(null, token);
+
+  const [state, dispatch] = useFormState(resetearPasswordConToken, {
+    errores: [],
+    success: "",
+  });
+
+  useEffect(() => {
+    if (state.errores) {
+      state.errores.forEach((error) => {
+        toast.error(error);
+      });
+    }
+    if (state.success) {
+      toast.success(state.success, {
+        onClose: () => {
+          router.push("/auth/login");
+        },
+        onClick: () => {
+          router.push("/auth/login");
+        },
+      });
+    }
+  }, [state]);
+
   return (
-    <form className=" mt-14 space-y-5" noValidate>
+    <form className=" mt-14 space-y-5" noValidate action={dispatch}>
       <div className="flex flex-col gap-5">
         <label className="font-bold text-lg" htmlFor="password">
           Contraseña

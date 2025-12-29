@@ -6,12 +6,15 @@ import { toast } from "react-toastify";
 
 type ValidarTokenFormProps = {
   setEsValido: Dispatch<SetStateAction<boolean>>;
+  token: string;
+  setToken: Dispatch<SetStateAction<string>>;
 };
 
 export default function ValidarTokenForm({
   setEsValido,
+  token,
+  setToken,
 }: ValidarTokenFormProps) {
-  const [token, setToken] = useState("");
   const [estaCompleto, SetEstaCompleto] = useState(false);
 
   const validarTokenInput = validarToken.bind(null, token);
