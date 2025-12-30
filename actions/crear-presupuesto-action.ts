@@ -1,11 +1,7 @@
 "use server";
 
-import {
-  DraftPresupuestoSchema,
-  ErrorResponseSchema,
-  SuccessSchema,
-} from "@/src/schemas";
-import { cookies } from "next/headers";
+import obtenerToken from "@/src/auth/token";
+import { DraftPresupuestoSchema, SuccessSchema } from "@/src/schemas";
 
 type ActionStateType = {
   errores: string[];
@@ -27,7 +23,7 @@ export async function crearPresupuesto(
     };
   }
 
-  const token = cookies().get("LUKIN_TOKEN")?.value;
+  const token = obtenerToken();
 
   const url = `${process.env.API_URL}/presupuestos`;
   const req = await fetch(url, {

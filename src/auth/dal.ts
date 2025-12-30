@@ -1,12 +1,12 @@
 import "server-only";
 
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { UsuarioSchema } from "../schemas";
 import { cache } from "react";
+import obtenerToken from "./token";
 
 export const verificarSesion = cache(async () => {
-  const token = cookies().get("LUKIN_TOKEN")?.value;
+  const token = obtenerToken();
   if (!token) {
     redirect("/auth/login");
   }

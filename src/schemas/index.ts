@@ -64,4 +64,20 @@ export const UsuarioSchema = z.object({
   correo: z.email(),
 });
 
+export const PresupuestoAPIResponseSchema = z.object({
+  id: z.number(),
+  nombre: z.string(),
+  cantidad: z.string(),
+  idUsuario: z.number(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+});
+
+export const PresupuestosAPIResponseSchema = z.array(
+  PresupuestoAPIResponseSchema
+);
+
+// Types
 export type Usuario = z.infer<typeof UsuarioSchema>;
+
+export type Presupuesto = z.infer<typeof PresupuestoAPIResponseSchema>;
