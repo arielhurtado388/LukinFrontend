@@ -1,16 +1,23 @@
 "use client";
 
-import { crearPresupuesto } from "@/actions/crear-presupuesto-action";
+import { Presupuesto } from "@/src/schemas";
+import PresupuestoForm from "./PresupuestoForm";
 import { useFormState } from "react-dom";
+import { editarPresupuesto } from "@/actions/editar-presupuesto-action";
 import MensajeError from "../ui/MensajeError";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import PresupuestoForm from "./PresupuestoForm";
 
-export default function CrearPresupuestoForm() {
+export default function EditarPresupuestoForm({
+  presupuesto,
+}: {
+  presupuesto: Presupuesto;
+}) {
   const router = useRouter();
-  const [state, dispatch] = useFormState(crearPresupuesto, {
+  const editarPresupuestoId = editarPresupuesto.bind(null, presupuesto.id);
+
+  const [state, dispatch] = useFormState(editarPresupuestoId, {
     errores: [],
     success: "",
   });
@@ -27,11 +34,13 @@ export default function CrearPresupuestoForm() {
       {state.errores.map((error) => (
         <MensajeError key={error}>{error}</MensajeError>
       ))}
-      <PresupuestoForm />
+
+      <PresupuestoForm presupuesto={presupuesto} />
+
       <input
         type="submit"
         className="bg-amber-500 w-full p-3 text-white uppercase font-bold hover:bg-amber-600 cursor-pointer transition-colors"
-        value="Crear Presupuesto"
+        value="Guardar Cambios"
       />
     </form>
   );

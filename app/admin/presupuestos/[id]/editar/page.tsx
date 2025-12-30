@@ -1,3 +1,4 @@
+import EditarPresupuestoForm from "@/components/presupuestos/EditarPresupuestoForm";
 import obtenerToken from "@/src/auth/token";
 import { PresupuestoAPIResponseSchema } from "@/src/schemas";
 import Link from "next/link";
@@ -49,7 +50,9 @@ export default async function EditarPage({
           Volver
         </Link>
       </div>
-      <div className="p-10 mt-10  shadow-lg border "></div>
+      <div className="p-10 mt-10  shadow-lg border ">
+        <EditarPresupuestoForm presupuesto={presupuesto} />
+      </div>
     </>
   );
 }
