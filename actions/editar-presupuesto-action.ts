@@ -7,6 +7,7 @@ import {
   Presupuesto,
   SuccessSchema,
 } from "@/src/schemas";
+import { revalidatePath } from "next/cache";
 
 type ActionStateType = {
   errores: string[];
@@ -53,6 +54,8 @@ export async function editarPresupuesto(
       success: "",
     };
   }
+
+  revalidatePath("/admin");
 
   const success = SuccessSchema.parse(json);
 

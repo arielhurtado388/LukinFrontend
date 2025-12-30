@@ -1,28 +1,19 @@
 import EditarPresupuestoForm from "@/components/presupuestos/EditarPresupuestoForm";
-import obtenerToken from "@/src/auth/token";
-import { PresupuestoAPIResponseSchema } from "@/src/schemas";
+import { obtenerPresupuesto } from "@/src/services/presupuestos";
+import { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
 
-const obtenerPresupuesto = async (idPresupuesto: string) => {
-  const token = obtenerToken();
-  const url = `${process.env.API_URL}/presupuestos/${idPresupuesto}`;
-  const req = await fetch(url, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
-  const json = await req.json();
-
-  if (!req.ok) {
-    notFound();
-  }
-
-  const presupuesto = PresupuestoAPIResponseSchema.parse(json);
-
-  return presupuesto;
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  const presupuesto = await obtenerPresupuesto(params.id);
+  return {
+    title: `Lukin - ${presupuesto.nombre}`,
+    description: `Lukin - ${presupuesto.nombre}`,
+  };
+}
 
 export default async function EditarPage({
   params,
