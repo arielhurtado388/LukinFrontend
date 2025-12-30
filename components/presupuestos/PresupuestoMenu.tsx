@@ -44,7 +44,7 @@ export default function PresupuestoMenu({
             </MenuItem>
             <MenuItem>
               <Link
-                href={``}
+                href={`/admin/presupuestos/${idPresupuesto}/editar`}
                 className="block px-3 py-1 text-sm leading-6 text-gray-900"
               >
                 Editar
