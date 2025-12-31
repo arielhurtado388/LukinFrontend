@@ -1,6 +1,7 @@
 import AgregarGastoButton from "@/components/gastos/AgregarGastoButton";
 import ModalContainer from "@/components/ui/ModalContainer";
 import { obtenerPresupuesto } from "@/src/services/presupuestos";
+import { formatearFecha, formatearMoneda } from "@/src/utils";
 import { Metadata } from "next";
 import React from "react";
 
@@ -38,7 +39,35 @@ export default async function DetallesPresupuestoPage({
 
       {presupuesto.gastos.length ? (
         <>
-          <p>Si hay gastos</p>
+          <h1 className="font-black text-3xl text-purple-950 mt-10">
+            Tus gastos
+          </h1>
+
+          <ul
+            role="list"
+            className="divide-y divide-gray-300 border shadow-lg mt-10 "
+          >
+            {presupuesto.gastos.map((gasto) => (
+              <li key={gasto.id} className="flex justify-between gap-x-6 p-5">
+                <div className="flex min-w-0 gap-x-4">
+                  <div className="min-w-0 flex-auto space-y-2">
+                    <p className="text-2xl font-semibold text-gray-900">
+                      {gasto.nombre}
+                    </p>
+                    <p className="text-xl font-bold text-amber-500">
+                      {formatearMoneda(+gasto.cantidad)}
+                    </p>
+                    <p className="text-gray-500  text-sm">
+                      Agregado:{" "}
+                      <span className="font-bold">
+                        {formatearFecha(gasto.updatedAt)}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
         </>
       ) : (
         <p className="text-center py-20">No hay gastos aún</p>
