@@ -51,6 +51,8 @@ export const DraftPresupuestoSchema = z.object({
     .min(1, "La cantidad no es válida"),
 });
 
+export const PasswordSchema = z.string().min(1, "La contraseña es obligatoria");
+
 // Revisa respuestas
 export const SuccessSchema = z.string();
 

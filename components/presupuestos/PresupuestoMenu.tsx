@@ -11,12 +11,15 @@ import {
 } from "@headlessui/react";
 import { EllipsisVerticalIcon } from "@heroicons/react/20/solid";
 import { Presupuesto } from "@/src/schemas";
+import { useRouter } from "next/navigation";
 
 export default function PresupuestoMenu({
   idPresupuesto,
 }: {
   idPresupuesto: Presupuesto["id"];
 }) {
+  const router = useRouter();
+
   return (
     <>
       <Menu as="div" className="relative flex-none">
@@ -55,7 +58,9 @@ export default function PresupuestoMenu({
               <button
                 type="button"
                 className="block px-3 py-1 text-sm leading-6 text-red-500"
-                onClick={() => {}}
+                onClick={() =>
+                  router.push(`?idEliminarPresupuesto=${idPresupuesto}`)
+                }
               >
                 Eliminar
               </button>

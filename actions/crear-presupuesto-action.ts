@@ -2,6 +2,7 @@
 
 import obtenerToken from "@/src/auth/token";
 import { DraftPresupuestoSchema, SuccessSchema } from "@/src/schemas";
+import { revalidatePath } from "next/cache";
 
 type ActionStateType = {
   errores: string[];
@@ -40,6 +41,7 @@ export async function crearPresupuesto(
 
   const json = await req.json();
 
+  revalidatePath("/admin");
   const success = SuccessSchema.parse(json);
 
   return {
