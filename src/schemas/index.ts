@@ -53,6 +53,11 @@ export const DraftPresupuestoSchema = z.object({
 
 export const PasswordSchema = z.string().min(1, "La contraseña es obligatoria");
 
+export const DraftGastoSchema = z.object({
+  nombre: z.string().min(1, "El nombre es obligatorio"),
+  cantidad: z.coerce.number().min(1, "La cantidad no es válida"),
+});
+
 // Revisa respuestas
 export const SuccessSchema = z.string();
 
@@ -66,6 +71,15 @@ export const UsuarioSchema = z.object({
   correo: z.email(),
 });
 
+export const GastoAPIResponseSchema = z.object({
+  id: z.number(),
+  nombre: z.string(),
+  cantidad: z.string(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+  idPresupuesto: z.number(),
+});
+
 export const PresupuestoAPIResponseSchema = z.object({
   id: z.number(),
   nombre: z.string(),
@@ -73,6 +87,7 @@ export const PresupuestoAPIResponseSchema = z.object({
   idUsuario: z.number(),
   createdAt: z.string(),
   updatedAt: z.string(),
+  gastos: z.array(GastoAPIResponseSchema),
 });
 
 export const PresupuestosAPIResponseSchema = z.array(
