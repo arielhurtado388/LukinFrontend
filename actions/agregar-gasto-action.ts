@@ -7,6 +7,7 @@ import {
   Presupuesto,
   SuccessSchema,
 } from "@/src/schemas";
+import { revalidatePath } from "next/cache";
 
 type ActionStateType = {
   errores: string[];
@@ -54,6 +55,7 @@ export default async function agregarGasto(
       success: "",
     };
   }
+  revalidatePath(`/admin/presupuestos/${idPresupuesto}`);
   const success = SuccessSchema.parse(json);
 
   return {

@@ -91,10 +91,12 @@ export const PresupuestoAPIResponseSchema = z.object({
 });
 
 export const PresupuestosAPIResponseSchema = z.array(
-  PresupuestoAPIResponseSchema
+  PresupuestoAPIResponseSchema.omit({ gastos: true })
 );
 
 // Types
 export type Usuario = z.infer<typeof UsuarioSchema>;
 
 export type Presupuesto = z.infer<typeof PresupuestoAPIResponseSchema>;
+
+export type Gasto = z.infer<typeof GastoAPIResponseSchema>;

@@ -1,9 +1,9 @@
 import AgregarGastoButton from "@/components/gastos/AgregarGastoButton";
+import GastoMenu from "@/components/gastos/GastoMenu";
 import ModalContainer from "@/components/ui/ModalContainer";
 import { obtenerPresupuesto } from "@/src/services/presupuestos";
 import { formatearFecha, formatearMoneda } from "@/src/utils";
 import { Metadata } from "next";
-import React from "react";
 
 export async function generateMetadata({
   params,
@@ -65,6 +65,7 @@ export default async function DetallesPresupuestoPage({
                     </p>
                   </div>
                 </div>
+                <GastoMenu idGasto={gasto.id} />
               </li>
             ))}
           </ul>
