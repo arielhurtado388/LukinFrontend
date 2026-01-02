@@ -1,5 +1,6 @@
 import AgregarGastoButton from "@/components/gastos/AgregarGastoButton";
 import GastoMenu from "@/components/gastos/GastoMenu";
+import Cantidad from "@/components/ui/Cantidad";
 import ModalContainer from "@/components/ui/ModalContainer";
 import { obtenerPresupuesto } from "@/src/services/presupuestos";
 import { formatearFecha, formatearMoneda } from "@/src/utils";
@@ -23,9 +24,17 @@ export default async function DetallesPresupuestoPage({
   params: { id: string };
 }) {
   const presupuesto = await obtenerPresupuesto(params.id);
+
+  const totalGastado = presupuesto.gastos.reduce(
+    (total, gasto) => +gasto.cantidad + total,
+    0
+  );
+
+  const totalDisponible = +presupuesto.cantidad - totalGastado;
+
   return (
     <>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center flex-col md:flex-row gap-5">
         <div>
           <h1 className="font-black text-4xl text-purple-950">
             {presupuesto.nombre}
@@ -39,6 +48,17 @@ export default async function DetallesPresupuestoPage({
 
       {presupuesto.gastos.length ? (
         <>
+          <div className="grid grid-cols-1 md:grid-cols-2 mt-10">
+            <div>Grafico</div>
+            <div className="flex flex-col justify-center items-center md:items-start gap-5">
+              <Cantidad
+                titulo={"Presupuesto"}
+                cantidad={+presupuesto.cantidad}
+              />
+              <Cantidad titulo={"Disponible"} cantidad={totalDisponible} />
+              <Cantidad titulo={"Gastado"} cantidad={totalGastado} />
+            </div>
+          </div>
           <h1 className="font-black text-3xl text-purple-950 mt-10">
             Tus gastos
           </h1>
