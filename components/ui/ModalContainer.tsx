@@ -27,10 +27,12 @@ export default function ModalContainer() {
 
   const agregarGasto = searchParams.get("agregarGasto");
   const editarGasto = searchParams.get("idEditarGasto");
+  const eliminarGasto = searchParams.get("idEliminarGasto");
 
   const obtenerNombreComponente = () => {
     if (agregarGasto) return "AgregarGasto";
     if (editarGasto) return "EditarGasto";
+    if (eliminarGasto) return "EliminarGasto";
   };
 
   const nombreComponente = obtenerNombreComponente();
