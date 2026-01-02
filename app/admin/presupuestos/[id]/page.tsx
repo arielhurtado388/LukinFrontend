@@ -1,5 +1,6 @@
 import AgregarGastoButton from "@/components/gastos/AgregarGastoButton";
 import GastoMenu from "@/components/gastos/GastoMenu";
+import ProgressBar from "@/components/presupuestos/ProgressBar";
 import Cantidad from "@/components/ui/Cantidad";
 import ModalContainer from "@/components/ui/ModalContainer";
 import { obtenerPresupuesto } from "@/src/services/presupuestos";
@@ -32,6 +33,8 @@ export default async function DetallesPresupuestoPage({
 
   const totalDisponible = +presupuesto.cantidad - totalGastado;
 
+  const porcentaje = +((totalGastado / +presupuesto.cantidad) * 100).toFixed(2);
+
   return (
     <>
       <div className="flex justify-between items-center flex-col md:flex-row gap-5">
@@ -49,7 +52,9 @@ export default async function DetallesPresupuestoPage({
       {presupuesto.gastos.length ? (
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 mt-10">
-            <div>Grafico</div>
+            <div>
+              <ProgressBar porcentaje={porcentaje} />
+            </div>
             <div className="flex flex-col justify-center items-center md:items-start gap-5">
               <Cantidad
                 titulo={"Presupuesto"}
