@@ -58,6 +58,19 @@ export const DraftGastoSchema = z.object({
   cantidad: z.coerce.number().min(1, "La cantidad no es válida"),
 });
 
+export const ActualizarPasswordSchema = z
+  .object({
+    password: z.string().min(1, "La contraseña actual es obligatoria"),
+    nuevo_password: z
+      .string()
+      .min(8, "La nueva contraseña debe tener al menos 8 caracteres"),
+    confirmacion_nuevo_password: z.string().trim(),
+  })
+  .refine((data) => data.nuevo_password === data.confirmacion_nuevo_password, {
+    message: "Las contraseñas no son iguales",
+    path: ["confirmacion_nuevo_password"],
+  });
+
 // Revisa respuestas
 export const SuccessSchema = z.string();
 

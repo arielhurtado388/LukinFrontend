@@ -1,3 +1,5 @@
+import CambiarPasswordForm from "@/components/perfil/CambiarPasswordForm";
+
 export default async function CambiarPasswordPage() {
   return (
     <>
@@ -8,6 +10,7 @@ export default async function CambiarPasswordPage() {
         Aquí puedes cambiar tu {""}
         <span className="text-amber-500">contraseña</span>
       </p>
+      <CambiarPasswordForm />
     </>
   );
 }
