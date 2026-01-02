@@ -100,3 +100,5 @@ export type Usuario = z.infer<typeof UsuarioSchema>;
 export type Presupuesto = z.infer<typeof PresupuestoAPIResponseSchema>;
 
 export type Gasto = z.infer<typeof GastoAPIResponseSchema>;
+
+export type DraftGasto = z.infer<typeof DraftGastoSchema>;

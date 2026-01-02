@@ -1,4 +1,10 @@
-export default function GastoForm() {
+import { DraftGasto } from "@/src/schemas";
+
+type GastoFormProps = {
+  gasto?: DraftGasto;
+};
+
+export default function GastoForm({ gasto }: GastoFormProps) {
   return (
     <>
       <div className="mb-5">
@@ -11,6 +17,7 @@ export default function GastoForm() {
           type="text"
           placeholder="Nombre del gasto"
           name="nombre"
+          defaultValue={gasto?.nombre}
         />
       </div>
 
@@ -24,6 +31,7 @@ export default function GastoForm() {
           type="number"
           placeholder="Cantidad del gasto"
           name="cantidad"
+          defaultValue={gasto?.cantidad}
         />
       </div>
     </>

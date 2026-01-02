@@ -1,7 +1,7 @@
 import { DialogTitle } from "@headlessui/react";
 import GastoForm from "./GastoForm";
 import { useFormState } from "react-dom";
-import agregarGasto from "@/actions/agregar-gasto-action";
+import agregarGasto from "@/actions/crear-gasto-action";
 import { useParams } from "next/navigation";
 import MensajeError from "../ui/MensajeError";
 import { useEffect } from "react";
