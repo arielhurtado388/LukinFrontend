@@ -4,7 +4,7 @@ import { actualizarPerfil } from "@/actions/actualizar-perfil-action";
 import { Usuario } from "@/src/schemas";
 import { useFormState } from "react-dom";
 import MensajeError from "../ui/MensajeError";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { toast } from "react-toastify";
 
 export default function PerfilForm({ usuario }: { usuario: Usuario }) {

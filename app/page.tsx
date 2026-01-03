@@ -1,5 +1,5 @@
 import Logo from "@/components/ui/Logo";
-import { verificarSesion } from "@/src/auth/dal";
+// import { verificarSesion } from "@/src/auth/dal";
 import Link from "next/link";
 
 export default async function Home() {

@@ -2,7 +2,7 @@ import { DialogTitle } from "@headlessui/react";
 import GastoForm from "./GastoForm";
 import { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "next/navigation";
-import { DraftGasto, Gasto } from "@/src/schemas";
+import { DraftGasto } from "@/src/schemas";
 import { useFormState } from "react-dom";
 import editarGasto from "@/actions/editar-gasto-action";
 import MensajeError from "../ui/MensajeError";
