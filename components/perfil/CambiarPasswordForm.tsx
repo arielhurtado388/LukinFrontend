@@ -23,7 +23,7 @@ export default function CambiarPasswordForm() {
   return (
     <>
       {state.errores.map((error) => (
-        <MensajeError>{error}</MensajeError>
+        <MensajeError key={error}>{error}</MensajeError>
       ))}
       <form className=" mt-14 space-y-5" noValidate action={dispatch} ref={ref}>
         <div className="flex flex-col gap-5">

@@ -71,6 +71,11 @@ export const ActualizarPasswordSchema = z
     path: ["confirmacion_nuevo_password"],
   });
 
+export const ActualizarPerfilSchema = z.object({
+  nombre: z.string().min(3, "El nombre debe tener mínimo 3 caracteres"),
+  correo: z.email("El correo no es válido"),
+});
+
 // Revisa respuestas
 export const SuccessSchema = z.string();
 

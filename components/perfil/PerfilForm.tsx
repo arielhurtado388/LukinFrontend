@@ -1,11 +1,30 @@
 "use client";
 
+import { actualizarPerfil } from "@/actions/actualizar-perfil-action";
 import { Usuario } from "@/src/schemas";
+import { useFormState } from "react-dom";
+import MensajeError from "../ui/MensajeError";
+import { useEffect, useRef } from "react";
+import { toast } from "react-toastify";
 
 export default function PerfilForm({ usuario }: { usuario: Usuario }) {
+  const [state, dispatch] = useFormState(actualizarPerfil, {
+    errores: [],
+    success: "",
+  });
+
+  useEffect(() => {
+    if (state.success) {
+      toast.success(state.success);
+    }
+  }, [state]);
+
   return (
     <>
-      <form className=" mt-14 space-y-5" noValidate>
+      {state.errores.map((error) => (
+        <MensajeError key={error}>{error}</MensajeError>
+      ))}
+      <form className=" mt-14 space-y-5" noValidate action={dispatch}>
         <div className="flex flex-col gap-5">
           <label className="font-bold text-lg" htmlFor="nombre">
             Nombre
