@@ -24,7 +24,7 @@ export default function AgregarGastoForm({
       toast.success(state.success);
       closeModal();
     }
-  }, [state]);
+  }, [state, closeModal]);
 
   return (
     <>

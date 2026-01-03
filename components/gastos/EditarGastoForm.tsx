@@ -34,14 +34,14 @@ export default function EditarGastoForm({
     fetch(url)
       .then((res) => res.json())
       .then((data) => setGasto(data));
-  }, []);
+  }, [idGasto, idPresupuesto]);
 
   useEffect(() => {
     if (state.success) {
       toast.success(state.success);
       closeModal();
     }
-  }, [state]);
+  }, [state, closeModal]);
 
   return (
     <>

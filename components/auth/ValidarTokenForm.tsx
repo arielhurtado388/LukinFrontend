@@ -19,7 +19,7 @@ export default function ValidarTokenForm({
 
   const validarTokenInput = validarToken.bind(null, token);
 
-  const [state, dispath] = useFormState(validarTokenInput, {
+  const [state, dispatch] = useFormState(validarTokenInput, {
     errores: [],
     success: "",
   });
@@ -34,13 +34,13 @@ export default function ValidarTokenForm({
       toast.success(state.success);
       setEsValido(true);
     }
-  }, [state]);
+  }, [state, setEsValido, dispatch]);
 
   useEffect(() => {
     if (estaCompleto) {
-      dispath();
+      dispatch();
     }
-  }, [estaCompleto]);
+  }, [estaCompleto, dispatch]);
 
   const handleChange = (token: string) => {
     SetEstaCompleto(false);

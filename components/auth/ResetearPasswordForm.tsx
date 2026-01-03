@@ -29,7 +29,7 @@ export default function ResetearPasswordForm({
       toast.success(state.success);
       router.push("/auth/login");
     }
-  }, [state]);
+  }, [state, router]);
 
   return (
     <form className=" mt-14 space-y-5" noValidate action={dispatch}>

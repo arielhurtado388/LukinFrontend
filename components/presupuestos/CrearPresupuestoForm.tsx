@@ -20,7 +20,7 @@ export default function CrearPresupuestoForm() {
       toast.success(state.success);
       router.push("/admin");
     }
-  }, [state]);
+  }, [state, router]);
 
   return (
     <form className="mt-10 space-y-3" noValidate action={dispatch}>

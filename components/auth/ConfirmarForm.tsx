@@ -23,7 +23,7 @@ export default function ConfirmarForm() {
     if (estaCompleto) {
       dispatch();
     }
-  }, [estaCompleto]);
+  }, [estaCompleto, dispatch, router]);
 
   useEffect(() => {
     if (state.errores) {
@@ -35,7 +35,7 @@ export default function ConfirmarForm() {
       toast.success(state.success);
       router.push("/auth/login");
     }
-  }, [state]);
+  }, [state, router]);
 
   const handleChange = (token: string) => {
     setEstaCompleto(false);

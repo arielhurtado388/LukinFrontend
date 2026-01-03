@@ -31,14 +31,14 @@ export default function EliminarGastoForm({
     if (!Number.isInteger(+idPresupuesto) || !Number.isInteger(+idGasto)) {
       closeModal();
     }
-  }, []);
+  }, [idGasto, idPresupuesto, closeModal]);
 
   useEffect(() => {
     if (state.success) {
       toast.success(state.success);
       closeModal();
     }
-  }, [state]);
+  }, [state, closeModal]);
 
   return (
     <>
